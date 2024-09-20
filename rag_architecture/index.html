@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>RAG Architecture - wise-agents Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "RAG Architecture";
+        var mkdocs_page_input_path = "rag_architecture.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> wise-agents Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../multi_agents/">What are AI Agents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wise_agents_architecture/">Wise Agents architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">How to contribute</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Details</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">RAG Architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-rag">What is RAG?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-does-rag-work">How does RAG work?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#our-implementation">Our implementation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#vector-database-integration">Vector Database Integration</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-graph-rag">What is Graph RAG?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-does-graph-rag-work">How does Graph RAG work?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#graph-rag-with-embedding-based-retrieval">Graph RAG with Embedding-Based Retrieval</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#our-implementation_1">Our implementation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#graph-database-integration">Graph Database Integration</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-are-hallucinations">What are Hallucinations?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#how-does-chain-of-verification-cove-work">How does Chain-of-Verification (CoVe) work?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#our-implementation_2">Our implementation</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../using_cli/">Using CLI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../declare_agents/">Declare agents in YAML</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_agents/">How To Create Custom Agents</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../agentic_chatbot/">Agentic chatbot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sequential_coordinator_example/">Sequential Coordinator Example</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reference/wiseagents/">wiseagents</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/agents/">agents</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/assistant/">assistant</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/coordinator_wise_agents/">coordinator_wise_agents</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/rag_wise_agents/">rag_wise_agents</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/utility_wise_agents/">utility_wise_agents</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/cli/">cli</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/cli/wise_agent_cli/">wise_agent_cli</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/constants/">constants</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/core/">core</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/graphdb/">graphdb</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/graphdb/lang_chain_wise_agent_graph_db/">lang_chain_wise_agent_graph_db</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/graphdb/wise_agent_graph_db/">wise_agent_graph_db</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/llm/">llm</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/llm/openai_API_wise_agent_LLM/">openai_API_wise_agent_LLM</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/llm/wise_agent_LLM/">wise_agent_LLM</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/llm/wise_agent_remote_LLM/">wise_agent_remote_LLM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/transports/">transports</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/transports/stomp/">stomp</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/utils/">utils</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/vectordb/">vectordb</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/vectordb/lang_chain_wise_agent_vector_db/">lang_chain_wise_agent_vector_db</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/vectordb/wise_agent_vector_db/">wise_agent_vector_db</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/wise_agent_messaging/">wise_agent_messaging</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/yaml/">yaml</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/wise_yaml_loader/">wise_yaml_loader</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/yaml_utils/">yaml_utils</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../community/">Community</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing_lnk/">Contributing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">wise-agents Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Details</li>
+      <li class="breadcrumb-item active">RAG Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="wise-agents-rag-architecture">wise-agents RAG architecture</h1>
+<p>Wise Agents provides agent implementations that can be used for both standard retrieval augmented
+generation (RAG) and also for RAG with knowledge graphs (Graph RAG).</p>
+<h2 id="what-is-rag">What is RAG?</h2>
+<p>Retrieval augmented generation (RAG) provides the ability to enhance the knowledge of a large language
+model (LLM) by incorporating additional information during response generation. This is very important
+because although LLMs are trained with extremely large quantities of data, this data is static, has
+a cut-off date, and likely lacks domain-specific information. RAG provides the ability to incorporate
+additional information obtained from knowledge sources to ground LLM responses using this information,
+resulting in better quality responses.</p>
+<h3 id="how-does-rag-work">How does RAG work?</h3>
+<p>To be able to make use of RAG, the very first step is ingestion. Here, knowledge sources are processed,
+split into chunks of text, each chunk of text is converted to a vector representation (also known as
+an embedding), and then stored in a vector database.</p>
+<p>After this initial step, upon receiving a query, the goal is to retrieve the information that is most
+relevant to the query from the vector database. This is done by converting the query to a vector
+representation (i.e., embedding) and then querying the vector database to retrieve the chunks that
+are most similar to the query.</p>
+<p>The retrieved information is then included in a prompt to the LLM along with the original query. This
+helps the LLM to generate a response that is grounded in the retrieved information.</p>
+<h3 id="our-implementation">Our implementation</h3>
+<p>Wise Agents provides a <code>wiseagents.agents.RAGWiseAgent</code> that you can use or extend to answer questions
+using RAG.</p>
+<h4 id="vector-database-integration">Vector Database Integration</h4>
+<p>A <code>RAGWiseAgent</code> makes use of a <code>wiseagents.vectordb.WiseAgentVectorDB</code>, which provides integration
+with a vector database. Wise Agents provides an implementation of this abstract class that makes use
+of <code>pgvector</code>, see <code>wiseagents.vectordb.PGVectorLangChainWiseAgentVectorDB</code>. We are planning on adding
+integration with additional vector databases in the future. You can also create your own implementations
+depending on the vector database you'd like to use.</p>
+<h2 id="what-is-graph-rag">What is Graph RAG?</h2>
+<p>Graph RAG is a more structured approach to RAG. In standard RAG, as described above, the knowledge
+sources are simply split into chunks of text. However, there are many sources of information that
+actually have a lot of structure to them where this structure would be lost if just convert the knowledge
+source to text as is and split into chunks. For example, think about a bug report that has many different
+fields like "Description", "Steps to Reproduce", "Relates To", "Resolution", etc. If we just take the text
+from the bug report as is and just split the text into chunks, we'd lose all the structure that is
+inherently present in the bug report and the relationships to other bug reports.</p>
+<p>Graph RAG involves converting knowledge sources to knowledge graphs consisting of entities and
+relationships to preserve the structure that's inherent in the sources.</p>
+<h3 id="how-does-graph-rag-work">How does Graph RAG work?</h3>
+<p>Just like with standard RAG, the very first step is ingestion. Here, knowledge sources are processed and
+split into entities and relationships that are stored in a graph database. This can either be done manually
+or automatically using an LLM.</p>
+<p>After this initial step, upon receiving a query, the goal is to retrieve the information that is most
+relevant to the query from the graph database. This can be done by querying the graph database to
+extract relevant nodes and/or sub-graphs. As an example, let's consider the case where we have a graph
+database that consists of entities and relationships that have been derived from bug reports. If the
+query is "NullPointerException when invoking method <code>foo</code>", we can query the graph database to find
+bug reports with similar "Descriptions" and then extract additional relevant information from these bug
+reports like the "Resolution" for example.</p>
+<p>The retrieved information is then included in a prompt to the LLM along with the original query. This
+helps the LLM to generate a response that is grounded in the retrieved information.</p>
+<h3 id="graph-rag-with-embedding-based-retrieval">Graph RAG with Embedding-Based Retrieval</h3>
+<p>In addition to simply querying the graph database, it's also possible to create a vector representation
+(embedding) for each entity in the graph and then use embedding-based retrieval as in standard RAG
+to retrieve sub-graphs from the graph database that are most similar to the query.</p>
+<h3 id="our-implementation_1">Our implementation</h3>
+<p>Wise Agents provides a <code>wiseagents.agents.GraphRAGWiseAgent</code> that you can use or extend to answer
+questions using Graph RAG with embedding-based retrieval.</p>
+<h4 id="graph-database-integration">Graph Database Integration</h4>
+<p>A <code>GraphRAGWiseAgent</code> makes use of a <code>wiseagents.graphdb.WiseAgentGraphDB</code>, which provides integration
+with a graph database. Wise Agents provides an implementation of this abstract class that makes use
+of <code>Neo4j</code>, see <code>wiseagents.graphdb.Neo4jLangChainWiseAgentGraphDB</code>. An advantage of using Neo4j
+for the graph database integration is that it's possible to make use of embedding-based retrieval very
+easily. We are planning on adding integration with additional graph databases in the future. You can
+also create your own implementations depending on the graph database you'd like to use.</p>
+<p>A <code>GraphRAGWiseAgent</code> makes use of a <code>wiseagents.graphdb.WiseAgentGraphDB</code>. </p>
+<h2 id="what-are-hallucinations">What are Hallucinations?</h2>
+<p>Although retrieval augmented generation (RAG) and graph-based retrieval augmented generation (Graph RAG)
+are meant to ground LLM responses using retrieved information, it's still possible for the LLM
+to "hallucinate", i.e., generate responses that are not factually correct.</p>
+<p>To address this, Wise Agents also provides agent implementations that can be used to challenge
+the response that's been obtained from an LLM using the <a href="https://arxiv.org/pdf/2309.11495">Chain-of-Verification (CoVe)</a>
+method to try to prevent hallucinations.</p>
+<h3 id="how-does-chain-of-verification-cove-work">How does Chain-of-Verification (CoVe) work?</h3>
+<p>Chain-of-Verification (CoVe) is a method that involves verifying the baseline response generated by
+an LLM by planning verification questions to try to fact-check the baseline response. These verification
+questions are answered independently to avoid biases from the other answers and then a final revised
+response is determined using the baseline response together with the verification results that might have
+found inconsistencies. The CoVe method helps to decrease hallucinations.</p>
+<h3 id="our-implementation_2">Our implementation</h3>
+<p>Wise Agents provides a <code>wiseagents.agents.CoVeChallengerRAGWiseAgent</code> that you can use or extend to
+challenge responses for RAG obtained from an LLM using the CoVe method.</p>
+<p>Wise Agents also provides a <code>wiseagents.agents.CoVeChallengerGraphRAGWiseAgent</code> that you can use or
+extend to challenge responses for Graph RAG obtained from an LLM using the CoVe method.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../contributing/" class="btn btn-neutral float-left" title="How to contribute"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../using_cli/" class="btn btn-neutral float-right" title="Using CLI">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../contributing/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../using_cli/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

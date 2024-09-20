@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>What are AI Agents - wise-agents Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "What are AI Agents";
+        var mkdocs_page_input_path = "multi_agents.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> wise-agents Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">What are AI Agents</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#key-characteristics-of-ai-agents">Key characteristics of AI agents</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#components-of-an-ai-agent">Components of an AI Agent</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-a-multi-agent-ai-framework">What is a multi-agent AI framework?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-components-of-a-multi-agent-ai-framework">Key Components of a multi-agent AI framework</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advantages-of-multi-agent-ai-framework">Advantages of multi-agent AI framework</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#applications-of-ai-agents">Applications of AI Agents</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../wise_agents_architecture/">Wise Agents architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing/">How to contribute</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Details</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../rag_architecture/">RAG Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../using_cli/">Using CLI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../declare_agents/">Declare agents in YAML</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom_agents/">How To Create Custom Agents</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../agentic_chatbot/">Agentic chatbot</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../sequential_coordinator_example/">Sequential Coordinator Example</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../reference/wiseagents/">wiseagents</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/agents/">agents</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/assistant/">assistant</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/coordinator_wise_agents/">coordinator_wise_agents</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/rag_wise_agents/">rag_wise_agents</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/utility_wise_agents/">utility_wise_agents</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/cli/">cli</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/cli/wise_agent_cli/">wise_agent_cli</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/constants/">constants</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/core/">core</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/graphdb/">graphdb</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/graphdb/lang_chain_wise_agent_graph_db/">lang_chain_wise_agent_graph_db</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/graphdb/wise_agent_graph_db/">wise_agent_graph_db</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/llm/">llm</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/llm/openai_API_wise_agent_LLM/">openai_API_wise_agent_LLM</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/llm/wise_agent_LLM/">wise_agent_LLM</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/llm/wise_agent_remote_LLM/">wise_agent_remote_LLM</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/transports/">transports</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/transports/stomp/">stomp</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/utils/">utils</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/vectordb/">vectordb</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/vectordb/lang_chain_wise_agent_vector_db/">lang_chain_wise_agent_vector_db</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/vectordb/wise_agent_vector_db/">wise_agent_vector_db</a>
+                </li>
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/wise_agent_messaging/">wise_agent_messaging</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/yaml/">yaml</a>
+    <ul>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/wise_yaml_loader/">wise_yaml_loader</a>
+                </li>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/yaml_utils/">yaml_utils</a>
+                </li>
+    </ul>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../community/">Community</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../contributing_lnk/">Contributing</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">wise-agents Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">What are AI Agents</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="what-are-ai-agents">What are AI Agents?</h1>
+<p>AI agents are autonomous software systems that can perceive their environment, make decisions, and take actions to achieve specific goals. They are designed to operate without human intervention (even if sometimes human input could be considered as part of the process), leveraging advanced AI techniques like natural language processing and machine learning.</p>
+<h2 id="key-characteristics-of-ai-agents">Key characteristics of AI agents</h2>
+<ul>
+<li><strong>Autonomy</strong>: AI agents can make decisions and act independently based on their goals and the information they gather.</li>
+<li><strong>Flexibility</strong>: They can adapt to changing circumstances and learn from experience to improve their performance over time.</li>
+<li><strong>Reactivity</strong>: AI agents can perceive their environment and respond to changes in real-time.</li>
+</ul>
+<h2 id="components-of-an-ai-agent">Components of an AI Agent</h2>
+<p>AI agents are composed of several key components that enable their autonomous behavior:
+* <strong>Sensors</strong>: Used to gather information from the environment, such as user inputs, sensor data, or external APIs.
+* <strong>Agent Function</strong>: The core decision-making algorithm that maps sensor inputs to actions.
+* <strong>Actuators</strong>: Mechanisms that allow the agent to affect its environment, such as generating text responses, making API calls, or sending notifications.
+* <strong>Goals</strong>: The objectives the agent is designed to achieve, which guide its decision-making process.</p>
+<h2 id="what-is-a-multi-agent-ai-framework">What is a multi-agent AI framework?</h2>
+<p>A multi-agent AI framework is a system where multiple intelligent agents interact or work together to perform complex tasks, solve problems, or simulate environments. These agents can be autonomous entities, each with its own capabilities, knowledge base, and goals. Here’s a detailed description of a multi-agent AI framework:</p>
+<h2 id="key-components-of-a-multi-agent-ai-framework">Key Components of a multi-agent AI framework</h2>
+<ul>
+<li><strong>Agents</strong>:<ul>
+<li>Reactive Agents: Respond to changes in the environment.</li>
+<li>Deliberative Agents: Use reasoning and planning to achieve goals.</li>
+<li>Hybrid Agents: Combine reactive and deliberative strategies.</li>
+</ul>
+</li>
+<li><strong>Communication Mechanism</strong>:<ul>
+<li>Direct Communication: Agents send messages to each other.</li>
+<li>Indirect Communication: Agents use shared context or memory.</li>
+</ul>
+</li>
+<li><strong>Coordination and Cooperation</strong>:
+Strategies for agents to work together towards common goals, avoid conflicts, and optimize joint performance.<ul>
+<li>Examples:<ul>
+<li>Task Allocation: Dividing tasks among agents based on their capabilities.</li>
+<li>Task planning and prioritization</li>
+<li>Negotiation/reasoning: Agents discuss to reach agreements.</li>
+<li>Conflict resolution: Avoid loops or infinite loops for the same question</li>
+<li>Challenge other agents: challenge previous steps to reduce hallucinations</li>
+<li>Decision-Making: Methods for agents to make choices based on their goals, perceptions, and available information. LLMs or other AI algorithms (tule engine, game theory etc) can be used.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Retrieve additional informations</strong>: RAG agents can retrieve informations for better results. The agentic approach also permit a multi-step RAG refining progressively the information retrieved </li>
+</ul>
+<h2 id="advantages-of-multi-agent-ai-framework">Advantages of multi-agent AI framework</h2>
+<ul>
+<li><strong>Scalability</strong>: Easily add more agents to the system to handle increased complexity or workload.</li>
+<li><strong>Flexibility</strong>: Agents can be designed to specialize in different tasks, improving overall system performance.</li>
+<li><strong>Robustness</strong>: Failure of one agent does not necessarily compromise the entire system, enhancing reliability.</li>
+<li><strong>Efficiency</strong>: Distributed problem-solving can lead to faster and more efficient solutions.</li>
+</ul>
+<p>In summary, a multi-agent AI framework is a sophisticated and versatile system designed to handle complex, dynamic tasks by leveraging the collective intelligence and capabilities of multiple interacting agents.</p>
+<h2 id="applications-of-ai-agents">Applications of AI Agents</h2>
+<p>AI agents have a wide range of applications across various industries:
+* Conversational AI: Chatbots and virtual assistants that can interact naturally. The interaction can be more complex and benefits of the multi-agent system characteristics described above.
+* Automation: Agents that can automate complex workflows and decision-making processes.
+* Problem-solving: Agents that can break down complex problems, generate solutions, and execute tasks.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../wise_agents_architecture/" class="btn btn-neutral float-right" title="Wise Agents architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../wise_agents_architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
