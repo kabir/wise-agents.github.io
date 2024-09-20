@@ -45,7 +45,7 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Getting Started</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../multi_agents/">What are AI Agents</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../wise_agents_architecture/">Wise Agents architecture</a>
@@ -79,14 +79,12 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../declare_agents/">Declare agents in YAML</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../custom_agents/">How To Create Custom Agents</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Examples</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../agentic_chatbot/">Agentic chatbot</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../example_1/">Example 1</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../sequential_coordinator_example/">Sequential Coordinator Example</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../example_2/">Example 2</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">API Reference</span></p>
@@ -95,9 +93,7 @@
     <ul>
                 <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/agents/">agents</a>
     <ul>
-                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/assistant/">assistant</a>
-                </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/coordinator_wise_agents/">coordinator_wise_agents</a>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/collaboration_wise_agents/">collaboration_wise_agents</a>
                 </li>
                 <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/agents/rag_wise_agents/">rag_wise_agents</a>
                 </li>
@@ -112,8 +108,6 @@
     </ul>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/constants/">constants</a>
-                </li>
-                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/core/">core</a>
                 </li>
                 <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/graphdb/">graphdb</a>
     <ul>
@@ -139,8 +133,6 @@
                 </li>
     </ul>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/utils/">utils</a>
-                </li>
                 <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/vectordb/">vectordb</a>
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/vectordb/lang_chain_wise_agent_vector_db/">lang_chain_wise_agent_vector_db</a>
@@ -149,13 +141,13 @@
                 </li>
     </ul>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/wise_agent/">wise_agent</a>
+                </li>
                 <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/wise_agent_messaging/">wise_agent_messaging</a>
                 </li>
-                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/yaml/">yaml</a>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/yaml_env/">yaml_env</a>
     <ul>
-                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/wise_yaml_loader/">wise_yaml_loader</a>
-                </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/yaml_utils/">yaml_utils</a>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml_env/yaml_utils/">yaml_utils</a>
                 </li>
     </ul>
                 </li>
@@ -163,10 +155,28 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../community/">Community</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../contributing_lnk/">Contributing</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">How to contribute</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#forking-the-project">Forking the Project</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#good-first-issues">Good First Issues</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-your-developer-environment">Setting up your Developer Environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contributing-guidelines">Contributing Guidelines</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#code-reviews">Code Reviews</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#community">Community</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
                   </li>
@@ -187,7 +197,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Getting Started</li>
+          <li class="breadcrumb-item">About</li>
       <li class="breadcrumb-item active">How to contribute</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -250,7 +260,8 @@ For more information about virtual environment see <a href="https://docs.python.
 <li>
 <p>Activate the venv</p>
 <p><code>source .venv/bin/activate</code></p>
-<p>Notice that the Makefile requires the venv to be activated in order to build the project or run the tests.</p>
+<p>OR just using our Makefile</p>
+<p><code>make activate_venv</code></p>
 </li>
 <li>
 <p>Add a remote ref to upstream, for pulling future updates.
@@ -335,8 +346,8 @@ This way, we can merge your PR while still ensuring that the documentation or ex
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../wise_agents_architecture/" class="btn btn-neutral float-left" title="Wise Agents architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../rag_architecture/" class="btn btn-neutral float-right" title="RAG Architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../community/" class="btn btn-neutral float-left" title="Community"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../license/" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -359,10 +370,10 @@ This way, we can merge your PR while still ensuring that the documentation or ex
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../wise_agents_architecture/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../community/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../rag_architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../license/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
