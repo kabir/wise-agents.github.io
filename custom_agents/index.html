@@ -55,7 +55,9 @@
               </ul>
               <p class="caption"><span class="caption-text">Details</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../rag_architecture/">RAG Architecture</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../agent_coordination/">Agent Coordination</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rag_architecture/">Retrieval Augmented Generation (RAG)</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../using_cli/">Using CLI</a>
                   </li>
@@ -72,6 +74,8 @@
     <li class="toctree-l2"><a class="reference internal" href="#implementing-the-process_event-method">Implementing the process_event method</a>
     </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../communication/">Communication between agents</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Examples</span></p>
@@ -131,6 +135,8 @@
                 </li>
     </ul>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/utils/">utils</a>
+                </li>
                 <li class="toctree-l2"><a class="reference internal" href="../reference/wiseagents/vectordb/">vectordb</a>
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/vectordb/lang_chain_wise_agent_vector_db/">lang_chain_wise_agent_vector_db</a>
@@ -145,7 +151,7 @@
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/wise_yaml_loader/">wise_yaml_loader</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/yaml_utils/">yaml_utils</a>
+                <li class="toctree-l3"><a class="reference internal" href="../reference/wiseagents/yaml/wiseagents_yaml_object/">wiseagents_yaml_object</a>
                 </li>
     </ul>
                 </li>
@@ -213,8 +219,10 @@ to create and send a message to the appropriate agent. This destination agent wi
 type of collaboration that the agent is involved in. For example, if the agent has been invoked
 by a <code>PhasedCoordinatorWiseAgent</code> or an <code>AssistantAgent</code>, the response message will be sent back
 to that agent and the conversation history will be updated with the response as well. If the agent
-is involved in sequential collaboration, the response will be sent to either the next agent in the
+is involved in sequential coordination, the response will be sent to either the next agent in the
 sequence or back to the original requester if there are no more agents remaining.</p>
+<p>For more details about sequential and phased coordination, see the
+<a href="../agent_coordination/">Wise Agents Coordination</a> section.</p>
 <h2 id="implementing-the-process_response-method">Implementing the <code>process_response</code> method</h2>
 <p><strong>Method signature:</strong></p>
 <pre><code>def process_response(self, message: WiseAgentMessage) -&gt; bool:
@@ -241,7 +249,7 @@ For now, this method can be implemented by simply using a <code>pass</code> stat
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../declare_agents/" class="btn btn-neutral float-left" title="Declare agents in YAML"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../agentic_chatbot/" class="btn btn-neutral float-right" title="Agentic chatbot">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../communication/" class="btn btn-neutral float-right" title="Communication between agents">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -267,7 +275,7 @@ For now, this method can be implemented by simply using a <code>pass</code> stat
       <span><a href="../declare_agents/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../agentic_chatbot/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../communication/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

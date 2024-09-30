@@ -55,13 +55,17 @@
               </ul>
               <p class="caption"><span class="caption-text">Details</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../../../rag_architecture/">RAG Architecture</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../agent_coordination/">Agent Coordination</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../rag_architecture/">Retrieval Augmented Generation (RAG)</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../using_cli/">Using CLI</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../declare_agents/">Declare agents in YAML</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../custom_agents/">How To Create Custom Agents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../communication/">Communication between agents</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Examples</span></p>
@@ -123,6 +127,8 @@
                 </li>
     </ul>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../utils/">utils</a>
+                </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../vectordb/">vectordb</a>
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../../vectordb/lang_chain_wise_agent_vector_db/">lang_chain_wise_agent_vector_db</a>
@@ -137,7 +143,7 @@
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../../yaml/wise_yaml_loader/">wise_yaml_loader</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../../yaml/yaml_utils/">yaml_utils</a>
+                <li class="toctree-l3"><a class="reference internal" href="../../yaml/wiseagents_yaml_object/">wiseagents_yaml_object</a>
                 </li>
     </ul>
                 </li>
@@ -212,16 +218,14 @@
 
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
-              Bases: <code><span title="yaml.YAMLObject">YAMLObject</span></code></p>
+              Bases: <code><a class="autorefs autorefs-internal" title="wiseagents.yaml.WiseAgentsYAMLObject" href="../../yaml/#wiseagents.yaml.WiseAgentsYAMLObject">WiseAgentsYAMLObject</a></code></p>
 
 
         <p>Abstract class to define the interface for a WiseAgentLLM.</p>
 
               <details class="quote">
                 <summary>Source code in <code>wiseagents/llm/wise_agent_LLM.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -272,10 +276,9 @@
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">WiseAgentLLM</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">YAMLObject</span><span class="p">):</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">WiseAgentLLM</span><span class="p">(</span><span class="n">WiseAgentsYAMLObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract class to define the interface for a WiseAgentLLM.&quot;&quot;&quot;</span>
-    <span class="n">yaml_tag</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;!WiseAgentLLM&#39;</span>
-    <span class="n">yaml_loader</span> <span class="o">=</span> <span class="n">WiseAgentsLoader</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_message</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;Initialize the agent.</span>
 
@@ -284,6 +287,7 @@
 <span class="sd">            model_name (str): the model name</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="n">enforce_no_abstract_class_instances</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">WiseAgentLLM</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_system_message</span> <span class="o">=</span> <span class="n">system_message</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_model_name</span> <span class="o">=</span> <span class="n">model_name</span>
 
@@ -439,7 +443,8 @@
 <span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
-<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_message</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">system_message</span><span class="p">,</span> <span class="n">model_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Initialize the agent.</span>
 
 <span class="sd">    Args:</span>
@@ -447,6 +452,7 @@
 <span class="sd">        model_name (str): the model name</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="n">enforce_no_abstract_class_instances</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">WiseAgentLLM</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_system_message</span> <span class="o">=</span> <span class="n">system_message</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_model_name</span> <span class="o">=</span> <span class="n">model_name</span>
 </code></pre></div></td></tr></table></div>
@@ -470,9 +476,9 @@
 
             <details class="quote">
               <summary>Source code in <code>wiseagents/llm/wise_agent_LLM.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Return a string representation of the agent.&#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(system_message=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">system_message</span><span class="si">}</span><span class="s2">, model_name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="si">}</span><span class="s2">)&quot;</span>    
 </code></pre></div></td></tr></table></div>
@@ -557,8 +563,7 @@ Deal with the messages and tools is responsibility of the caller.</p>
 </table>
             <details class="quote">
               <summary>Source code in <code>wiseagents/llm/wise_agent_LLM.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
-<span class="normal">49</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
@@ -571,7 +576,8 @@ Deal with the messages and tools is responsibility of the caller.</p>
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
 <span class="k">def</span> <span class="nf">process_chat_completion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> 
                             <span class="n">messages</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ChatCompletionMessageParam</span><span class="p">],</span> 
                             <span class="n">tools</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ChatCompletionToolParam</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ChatCompletion</span><span class="p">:</span>
@@ -636,15 +642,15 @@ The single prompt is processed and the result is returned, all the context and s
 </table>
             <details class="quote">
               <summary>Source code in <code>wiseagents/llm/wise_agent_LLM.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
-<span class="normal">39</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
-<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
 <span class="k">def</span> <span class="nf">process_single_prompt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Process a single prompt. This method should be implemented by subclasses.</span>
 <span class="sd">    The single prompt is processed and the result is returned, all the context and state is maintained locally in the method</span>

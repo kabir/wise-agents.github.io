@@ -55,13 +55,17 @@
               </ul>
               <p class="caption"><span class="caption-text">Details</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../../../rag_architecture/">RAG Architecture</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../agent_coordination/">Agent Coordination</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../rag_architecture/">Retrieval Augmented Generation (RAG)</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../using_cli/">Using CLI</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../declare_agents/">Declare agents in YAML</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../../../custom_agents/">How To Create Custom Agents</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../../communication/">Communication between agents</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Examples</span></p>
@@ -123,6 +127,8 @@
                 </li>
     </ul>
                 </li>
+                <li class="toctree-l2"><a class="reference internal" href="../../utils/">utils</a>
+                </li>
                 <li class="toctree-l2"><a class="reference internal" href="../../vectordb/">vectordb</a>
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../../vectordb/lang_chain_wise_agent_vector_db/">lang_chain_wise_agent_vector_db</a>
@@ -137,7 +143,7 @@
     <ul>
                 <li class="toctree-l3"><a class="reference internal" href="../../yaml/wise_yaml_loader/">wise_yaml_loader</a>
                 </li>
-                <li class="toctree-l3"><a class="reference internal" href="../../yaml/yaml_utils/">yaml_utils</a>
+                <li class="toctree-l3"><a class="reference internal" href="../../yaml/wiseagents_yaml_object/">wiseagents_yaml_object</a>
                 </li>
     </ul>
                 </li>
@@ -352,25 +358,25 @@ The web interface will be running at http://127.0.0.1:7860</p>
         <span class="n">obj</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="p">,</span> <span class="n">transport</span><span class="p">:</span> <span class="n">WiseAgentTransport</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">WiseAgentMetaData</span> <span class="p">,</span> <span class="n">transport</span><span class="p">:</span> <span class="n">WiseAgentTransport</span><span class="p">,</span>
                  <span class="n">destination_agent_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initialize the agent.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            name (str): the name of the agent</span>
-<span class="sd">            description (str): a description of the agent</span>
+<span class="sd">            metadata (WiseAgentMetaData): the metadata for the agent</span>
 <span class="sd">            transport (WiseAgentTransport): the transport to use for communication</span>
 <span class="sd">            destination_agent_name (str): the name of the agent to send requests to</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_destination_agent_name</span> <span class="o">=</span> <span class="n">destination_agent_name</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">transport</span><span class="o">=</span><span class="n">transport</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">transport</span><span class="o">=</span><span class="n">transport</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a string representation of the agent.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
-<span class="s2">            description=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">, transport=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
+<span class="s2">            metadata=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">, transport=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
 <span class="s2">            destination_agent_name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_agent_name</span><span class="si">}</span><span class="s2">,</span><span class="se">\</span>
 <span class="s2">            response_delivery=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">response_delivery</span><span class="si">}</span><span class="s2">&quot;</span>
 
@@ -534,7 +540,7 @@ return (Callable[[], WiseAgentMessage]): the function to deliver the response to
 
 
 <h3 id="wiseagents.agents.assistant.AssistantAgent.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">transport</span><span class="p">,</span> <span class="n">destination_agent_name</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">transport</span><span class="p">,</span> <span class="n">destination_agent_name</span><span class="p">)</span></code>
 
 </h3>
 
@@ -563,11 +569,11 @@ return (Callable[[], WiseAgentMessage]): the function to deliver the response to
               </div>
             </li>
             <li>
-              <b><code>description</code></b>
-                  (<code>str</code>)
+              <b><code>metadata</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="wiseagents.WiseAgentMetaData" href="../../#wiseagents.WiseAgentMetaData">WiseAgentMetaData</a></code>)
               –
               <div class="doc-md-description">
-                <p>a description of the agent</p>
+                <p>the metadata for the agent</p>
               </div>
             </li>
             <li>
@@ -606,20 +612,20 @@ return (Callable[[], WiseAgentMessage]): the function to deliver the response to
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
-<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="p">,</span> <span class="n">transport</span><span class="p">:</span> <span class="n">WiseAgentTransport</span><span class="p">,</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="n">WiseAgentMetaData</span> <span class="p">,</span> <span class="n">transport</span><span class="p">:</span> <span class="n">WiseAgentTransport</span><span class="p">,</span>
              <span class="n">destination_agent_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Initialize the agent.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        name (str): the name of the agent</span>
-<span class="sd">        description (str): a description of the agent</span>
+<span class="sd">        metadata (WiseAgentMetaData): the metadata for the agent</span>
 <span class="sd">        transport (WiseAgentTransport): the transport to use for communication</span>
 <span class="sd">        destination_agent_name (str): the name of the agent to send requests to</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_destination_agent_name</span> <span class="o">=</span> <span class="n">destination_agent_name</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">transport</span><span class="o">=</span><span class="n">transport</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">,</span> <span class="n">transport</span><span class="o">=</span><span class="n">transport</span><span class="p">,</span> <span class="n">llm</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -677,7 +683,7 @@ return (Callable[[], WiseAgentMessage]): the function to deliver the response to
 <span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a string representation of the agent.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">(name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
-<span class="s2">        description=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">, transport=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
+<span class="s2">        metadata=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">metadata</span><span class="si">}</span><span class="s2">, transport=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">transport</span><span class="si">}</span><span class="s2">, </span><span class="se">\</span>
 <span class="s2">        destination_agent_name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">destination_agent_name</span><span class="si">}</span><span class="s2">,</span><span class="se">\</span>
 <span class="s2">        response_delivery=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">response_delivery</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div></td></tr></table></div>
